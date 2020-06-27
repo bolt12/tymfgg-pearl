@@ -1,13 +1,13 @@
 %% For double-blind review submission, w/o CCS and ACM Reference (max submission space)
-\documentclass[sigplan,review,anonymous]{acmart}\settopmatter{printfolios=true,printccs=false,printacmref=false}
+%\documentclass[sigplan,review,anonymous]{acmart}\settopmatter{printfolios=true,printccs=false,printacmref=false}
 %% For double-blind review submission, w/ CCS and ACM Reference
 %\documentclass[acmsmall,review,anonymous]{acmart}\settopmatter{printfolios=true}
 %% For single-blind review submission, w/o CCS and ACM Reference (max submission space)
-%\documentclass[acmsmall,review]{acmart}\settopmatter{printfolios=true,printccs=false,printacmref=false}
+%\documentclass[acmsmall,review]{acmart}\settopmatter{printfolios=true,printccs=false,printachttps://www.overleaf.com/project/5eb13412d04a610001998594mref=false}
 %% For single-blind review submission, w/ CCS and ACM Reference
 %\documentclass[acmsmall,review]{acmart}\settopmatter{printfolios=true}
 %% For final camera-ready submission, w/ required CCS and ACM Reference
-%\documentclass[acmsmall]{acmart}\settopmatter{}
+\documentclass[sigplan]{acmart}\settopmatter{}
 
 
 %% Journal information
@@ -171,7 +171,7 @@
                                         %% can be repeated if necessary
 %\orcid{nnnn-nnnn-nnnn-nnnn}             %% \orcid is optional
 \affiliation{
-  \position{MSc student}
+  \position{}
   \department{Department of Informatics}              %% \department is recommended
   \institution{University of Minho}            %% \institution is required
   \streetaddress{}
@@ -180,7 +180,24 @@
   \postcode{}
   \country{Portugal}                    %% \country is recommended
 }
-\email{a77628@alunos.uminho.pt}          %% \email is recommended
+\email{armando.j.santos@inesctec.pt}          %% \email is recommended
+
+%% Author with single affiliation.
+\author{José N. Oliveira}
+%\authornote{with author1 note}          %% \authornote is optional;
+                                        %% can be repeated if necessary
+%\orcid{nnnn-nnnn-nnnn-nnnn}             %% \orcid is optional
+\affiliation{
+  \position{}
+  \department{Department of Informatics}              %% \department is recommended
+  \institution{University of Minho}            %% \institution is required
+  \streetaddress{}
+  \city{Braga}
+  \state{Portugal}
+  \postcode{}
+  \country{Portugal}                    %% \country is recommended
+}
+\email{jno@di.uminho.pt}          %% \email is recommended
 
 %% Author with two affiliations and emails.
 %\author{First2 Last2}
@@ -223,22 +240,15 @@ We study a simple inductive data type for representing correct-by-construction m
 \begin{CCSXML}
 <ccs2012>
 <concept>
-<concept_id>10011007.10011006.10011008</concept_id>
-<concept_desc>Software and its engineering~General programming languages</concept_desc>
+<concept_id>10002950</concept_id>
+<concept_desc>Mathematics of computing</concept_desc>
 <concept_significance>500</concept_significance>
-</concept>
-<concept>
-<concept_id>10003456.10003457.10003521.10003525</concept_id>
-<concept_desc>Social and professional topics~History of programming languages</concept_desc>
-<concept_significance>300</concept_significance>
 </concept>
 </ccs2012>
 \end{CCSXML}
 
-\ccsdesc[500]{Software and its engineering~General programming languages}
-\ccsdesc[300]{Social and professional topics~History of programming languages}
+\ccsdesc[500]{Mathematics of computing}
 %% End of generated code
-
 
 %% Keywords
 %% comma separated list
@@ -296,7 +306,8 @@ The main goal of this paper is to demonstrate that by taking advantage of a stro
 \begin{itemize}
     \item We develop a library for transforming and manipulating matrices and demonstrate its composability and flexibility.
     \item Compared to current libraries, ours is more compositional and polymorphic and does not have partial matrix manipulation functions (hence less chances for usage errors). 
-    \item The data type has a mathematical structure completely characterised by the linear algebra of programming. This makes the proposed interface familiar for formal verification and equational reasoning. Any matrix can be constructed and sound, i.e. malformed matrices with incorrect dimensions of the sort, can not be constructed. \item Some practical examples that use the proposed matrix library in several application domains (e.g.\ probabilistic programming, quantum programming) are given and show how functional programming blends naturally with linear algebra. 
+    \item Our implementation of matrices enables simple manipulation of submatrices, making it particularly suitable for formal verification and equation reasoning, using the mathematical framework defined by the linear algebra of programming \citep{oliveira2012towards}. Furthermore, the data type constructors ensure that the matrices of this kind are sound, i.e. malformed matrices with incorrect dimensions of the sort, can not be constructed.
+    \item Some practical examples that use the proposed matrix library in several application domains (e.g.\ probabilistic programming, quantum programming) are given and show how functional programming blends naturally with linear algebra. 
 \end{itemize}{}
 
 \subsection{Layout of the \doc}
@@ -312,7 +323,7 @@ Category theory \cite{MA71, Awodey:2010:CT:2060081} is often referred to as a "t
 %When designing an interface this should reveal as little as possible about the implementation details, making it possible to switch from the current implementation to an alternative one, i.e.\ to another \emph{instance} of the same \emph{concept}.
 Category theory uses arrows as a generic notation able to cope with very distinct problem domains. These arrows, also called \emph{morphisms}, are typed with source and target objects and need to satisfy certain properties in order to form a category.
 
-A standard way to achieve typed functional programming is to use the category \textbf{Set} of sets to type functions. For instance, in addition to the function definition
+A standard way to achieve typed functional programming is to use the category \textbf{Set} of sets to type functions. For instance, in addition to the function definition:
 \begin{align*}
     f x = x + 1
 \end{align*}{}
@@ -330,16 +341,16 @@ The aphorism \emph{functions are special cases of relations} means that a functi
 \end{align*}
 A function $f :: A \longrightarrow B$ is viewed as a relation wherever one writes the input/output relationship $b = f(a)$.
 
-Both functions and relations have advanced type systems supported by the underlying categories. What about matrices? Matrices generalise relations into quantified relations, also termed \emph{labelled} or \emph{weighted} relations, leading into the category \textbf{Mat} of typed matrices.\footnote{See e.g.\ \cite{MO13c}. Strictly speaking, there is one such category \textbf{Mat}$_k$ per cell-type $k$, but ignoring this detail will not harm this summary of the overall theory.} A matrix $M$ with $c$ columns and $r$ rows can be regarded as a function $M(n, m)$ that tells the quantity occupying each cell $(n,m)$, for $1 \leq n \leq r$,  $1 \leq m \leq c$. From a categorical eye, $M$ can be regarded as a morphism $c \xrightarrow{M} r$ indicating that matrix $M$ is of type $c \longrightarrow r$. In this setting, matrix-matrix multiplication can be expressed by arrow composition:
+Both functions and relations have advanced type systems supported by the underlying categories. What about matrices? Matrices generalise relations into quantified ones, also termed \emph{labelled} or \emph{weighted} relations, leading into the category \textbf{Mat} of typed matrices.\footnote{See e.g.\ \cite{MO13c}. Strictly speaking, there is one such category \textbf{Mat}$_k$ per cell-type $k$, but ignoring this detail will not harm this summary of the overall theory.} A matrix $M$ with $c$ columns and $r$ rows can be regarded as a function $M(n, m)$ that tells the quantity occupying each cell $(n,m)$, for $1 \leq n \leq r$,  $1 \leq m \leq c$. From a categorical perspective, $M$ can be regarded as a morphism $c \xrightarrow{M} r$ indicating that matrix $M$ is of type $c \longrightarrow r$. In this setting, matrix-matrix multiplication can be expressed by arrow composition:
 \begin{equation}\label{mm-cat-comp}
 \begin{tikzcd}
 r & c \arrow[l, "M"'] & p \arrow[l, "N"'] \arrow[ll, "M \cdot N", bend left]
 \end{tikzcd}
 \end{equation}{}
-It has been shown that other interesting combinators arise from so-called \emph{biproducts} in the \textbf{Mat} category, which capture block-matrix operations in a natural way \cite{MO13c}. 
+\noindent It has been shown that other interesting combinators arise from so-called \emph{biproducts} in the \textbf{Mat} category, which capture block-matrix operations in a natural way \cite{MO13c}. 
 
 \subsection{Structure of \textbf{Mat}}\label{sec-struct-mat}
-The structure of the \textbf{Mat} category is described below. Figure \ref{fig:cheat_sheet} provides a reference guide containing the main algebraic laws.
+The structure of the \textbf{Mat} category is described below. \newline Figure \ref{fig:cheat_sheet} provides a reference guide containing the main algebraic laws.
 
 \subsubsection{Basic structure}
 
@@ -442,7 +453,7 @@ To ensure correct typing, typed linear algebra practitioners are encouraged to d
 \end{align}{}
     \noindent \textbf{Bilinearity}
 \begin{align}\label{bilinearity-1}
-& M \cdot (N + P) = M \cdot N + M \cdot C \\ \label{bilinearity-2}
+& M \cdot (N + P) = M \cdot N + M \cdot P \\ \label{bilinearity-2}
 & (N + P) \cdot M = N \cdot M + P \cdot M
 \end{align}
     \noindent \textbf{Universal properties}
@@ -478,9 +489,10 @@ To ensure correct typing, typed linear algebra practitioners are encouraged to d
         & \left[\frac{A}{B}\right] \cdot P = \left[\frac{A \cdot P}{B \cdot P}\right]
     \end{align}
     \noindent \textbf{Absorption}
-    \begin{equation}\label{eq:101221f}
-        \left[A \mathbin| B\right] \comp  (C \oplus D) = A \comp C + B \comp D
-    \end{equation}
+    \begin{align}\label{eq:101221f}
+        & \left[A \mathbin| B\right] \comp (C \oplus D) = \left[ A \comp C \mathbin| B \comp D \right] \\ \label{eq:1012212f}
+        & \left[\frac{A}{B}\right] \comp (C \oplus D) = \left[\frac{A \comp C}{B \comp D}\right]
+    \end{align}
     \noindent \textbf{Cancellation}
     \begin{align}\label{cancel-join}
         \left[ A \mathbin| B \right] \cdot i_1 = A\ ,\ \left[ A \mathbin| B \right] \cdot i_2 = B \\ \label{cancel-fork}
@@ -544,11 +556,7 @@ block-multiplication.
 \end{array}
 \)
 \end{wrapfigure}
-Looking at matrices as lists of lists, or arrays, or graphs is a rather poor perspective on linear algebra. Somewhat more useful is to focus on how matrices are built or partitioned and on which formal rules are there for handling their internal structure, as seen above.
-% \cite{MO13c}. Such is the main fuel that has powered the research carried out in this paper.
-Explicit, painful, low-level matrix manipulation is a source of dubious code, which is error-prone and difficult to analyse.
-%Yet understanding this construction when looking 
-Looking at it from a higher, abstract point of view that relies on a sound mathematical theory provides both simplicity and reliability benefits.
+Looking at matrices as lists of lists, or arrays, or graphs is a rather poor perspective on linear algebra. Somewhat more useful is to focus on how matrices are built or partitioned and on which formal rules are there for handling their internal structure, as seen above. Explicit, painful, low-level matrix manipulation is a source of dubious code, which is error-prone and difficult to analyse. Looking at it from a higher, abstract point of view that relies on a sound mathematical theory provides both simplicity and reliability benefits.
 
 \section{Matrix data type}\label{sec-matrix-type}
 
@@ -581,7 +589,7 @@ data Matrix e c r where
 \end{figure}
 Here \hs{One} is the inductive base case that construct the \emph{one-element} matrix; \hs{Join} and \hs{Fork} are the two basic binary constructors available for building matrices out of other matrices as you can see in Fig.~\ref{fig:one-join-fork}.
 
-These simple four constructors provide a type safe inductive definition where it is not possible to construct a malformed matrix such as \[\hs{Matrix { matrix = [[1,0],[0,1]], dimensions = (4,4) }}\], for example.
+These simple four constructors provide a type safe inductive definition where it is not possible to construct a malformed matrix such as \[\hs{Matrix { matrix = [[1,0],[0,1]], dimensions = (4,4) }}\] for example.
 
 The trick is to define a recursive data type in which dimensions are typed by algebraic data types and use a GADT in order to control the output type dimensions and maintain the \hs{Join} and \hs{Fork} dimension invariants across the data structure.
 
@@ -602,8 +610,8 @@ $\begin{aligned}
 \begin{minted}[xleftmargin=10pt]{haskell}
 iden2x2 :: Num e 
         => Matrix e (Either () ()) (Either () ())
-iden2x2 = Join (Fork (One 1) (One 0)) 
-               (Fork (One 0) (One 1))
+iden2x2 = Fork (Join (One 1) (One 0)) 
+               (Join (One 0) (One 1))
 \end{minted}
 \vspace{1mm}
 
@@ -631,15 +639,15 @@ type family FromNat' (b :: Bool) (m :: Type) where
 \end{minted}
 \vspace{1mm}
 
-The purpose of the \hs{Count} type family will be used to compute the normalised dimension types, as will be seen in \S\ref{subsec-newtype-wrappers}. If one wants be able to have matrix typed by generic arbitrary data types (as we'll see in \S\ref{sec-appl}), one needs to add support for generic types. We leave the trivial implementation out of the \doc  for simplicity. The \hs{FromNat} type family builds a balanced tree of \hs{Either}s at the type-level, from a type-level natural, that is supposed to be the matrix dimension.
+The purpose of the \hs{Count} type family will be used to compute the normalised dimension types, as will be seen in \S\ref{subsec-newtype-wrappers}. If one wants to be able to have matrix typed by generic arbitrary data types (as we'll see in \S\ref{sec-appl}), one needs to add support for generic types. We leave the trivial implementation out of the \doc\ for simplicity. The \hs{FromNat} type family builds a balanced tree of \hs{Either}s at the type-level, from a type-level natural, that is supposed to be the matrix dimension.
 
 These type families take advantage of the algebraic data type cardinality isomorphism and provide a conversion mechanism \emph{from} and \emph{to} data types/type-level naturals. So the same $2 \times 2$ identity matrix can now be defined as:
 
 \vspace{1mm}
 \begin{minted}[xleftmargin=10pt]{haskell}
 iden2x2 :: Num e => Matrix e (FromNat 2) (FromNat 2)
-iden2x2 = Join (Fork (One 1) (One 0)) 
-               (Fork (One 0) (One 1))
+iden2x2 = Fork (Join (One 1) (One 0)) 
+               (Join (One 0) (One 1))
 \end{minted}
 \vspace{1mm}
 
@@ -647,7 +655,7 @@ Notice that type families can be seen as type-level functions that are called at
 
 \section{Matrix manipulation and transformation} \label{sec:200303a}
 
-The proposed inductive matrix data type enables the use of pattern matching and the laws of the linear algebra of programming (\S\ref{laop-laws}) to write efficient, statically typed, total manipulation and transformation functions. In view of this, matrix composition (\emph{aka} matrix-matrix multiplication) can be defined elegantly and in a more calculational way, in contrast with the partial, (ugly) low-level nested for-loop implementation, which can be found in most imperative languages:
+The proposed inductive matrix data type enables the use of pattern matching and the laws of the linear algebra of programming (\S\ref{laop-laws}) to write total, efficient and statically typed manipulation and transformation functions. In view of this, matrix composition (\emph{aka} matrix-matrix multiplication) can be defined elegantly and in a more calculational way, in contrast with the partial, (ugly) low-level nested for-loop implementation, which can be found in most imperative languages:
 \begin{minted}[xleftmargin=10pt]{haskell}
 comp :: Num e => Matrix e cr rows 
      -> Matrix e cols cr -> Matrix e cols rows
@@ -658,7 +666,7 @@ comp (Fork a b) c          =
 comp c (Join a b)          = 
     Join (comp c a) (comp c b)
 \end{minted}
-Like matrix multiplication, other common operations, such as matrix transposition, benefit from a block-oriented structure that leads to a simple and natural divide-and-conquer algorithmic solution. Performance wise, this means that without much effort we can obtain optimal cache-oblivious algorithms. The basic philosophy in designing a cache-oblivious algorithm is to use a recursive approach that repeatedly divides the dataset until it eventually becomes cache resident and thus cache optimal. 
+Like matrix multiplication, other common operations, such as matrix transposition, benefit from a block-oriented structure that leads to a simple and natural divide-and-conquer algorithmic solution. Performance wise, this means that without much effort we can obtain optimal cache-oblivious algorithms\footnote{A cache-oblivious algorithm is such that no variables that depend on hardware parameters, such as the size of the cache and the length of the cache-line, need to be tuned to achieve optimality.} \citep{frigo1999cache}. The basic philosophy in designing a cache-oblivious algorithm is to use a recursive approach that repeatedly divides the dataset until it eventually becomes cache resident and thus cache optimal, as we can see from the definition of the \hs{comp} function above.
 
 In the type-class mechanics of Haskell \cite{hall1996type}, matrix entry-wise addition, multiplication and subtraction fit nicely by defining a \hs{Num} instance, as well as entry-wise matrix comparison and equality, by defining \hs{Ord} and \hs{Eq} instances, respectively. Sadly, there are no fusion laws that help defining an appropriate inductive definition of matrix equality when the two matrices have different valid permutations of \hs{Join}s and \hs{Fork}s, for example. This can still be done, however, by taking advantage of the exchange (``\emph{abide}") law (\ref{abide-law}):
 
@@ -683,21 +691,18 @@ instance Eq e => Eq (Matrix e cols rows) where
 \end{minted}
 \vspace{1mm}
 
-It is worth noting that one major downside of this encoding is that \hs{Either (Either () ()) ()} is different from \hs{Either () (Either () ())}, for example, even though both represent \hs{3}. This implies that two matrices with the same dimension can have different types, and thus, for example, they can not be tested for equality. One way to address this downside is shown in \S\ref{subsec-newtype-wrappers}, by introducing a new-type matrix wrapper with generic arbitrary dimensions. Another approach is to manually write an identity matrix that exposes this isomorphism and use it to obtain a matrix of the same dimensions.  
+It is worth noting that one major downside of this encoding is that \hs{Either (Either () ()) ()} is different from \hs{Either () (Either () ())}, for example, even though both represent $3$. This implies that two matrices with the same dimension can have different types, and thus, for example, they can not be tested for equality. One way to address this downside is shown in \S\ref{subsec-newtype-wrappers}, by introducing a new-type matrix wrapper with generic arbitrary dimensions. Another approach is to manually write an identity matrix that exposes this isomorphism and use it to obtain a matrix of the same dimensions.  
 
 \section{Matrix construction}\label{l-m-s}
 
-It is not possible to construct typed matrices depending on the type of the dimensions desired, because GHC is not able to infer the correct GADT types. One way to achieve this is by using type-classes. Type-classes can be seen as functions from types to values and they are the solution for writing methods that allow building matrices from other representations (e.g.\ list of lists of elements) in the same inductive way, as is the case with class \hs{FromLists}.
-
-\vspace{1mm}
+It is not possible to construct typed matrices depending on the type of the dimensions desired, because GHC is not able to infer the correct GADT types. One way to achieve this is by using type-classes. Type-classes can be seen as functions from types to values and they are the solution for writing methods that allow building matrices from other representations (e.g.\ list of lists of elements) in the same inductive way, as is the case of class \hs{FromLists}.
 \begin{minted}[xleftmargin=10pt, mathescape=true]{haskell}
 class FromLists e cols rows where
   fromLists :: [[e]] -> Matrix e cols rows
 \end{minted}
-\vspace{1mm}
-
 \noindent %Please note that is only possible to implement a version of 
-Note that \hs{fromLists} can fail at run-time if the input list is not complacent with the desired matrix dimensions. It is possible to offer wrapper functions around it that guarantee it won't fail at compile time. However, an alternative way of building matrices from other representations that is fully type-safe exists thanks to the linear map semantics of matrices although we leave this out of the scope of the \doc.
+Note that \hs{fromLists} can fail at run-time if the input list is not complacent with the desired matrix dimensions. It is possible to offer wrapper functions around it that guarantee it won't fail at compile time.
+%However, an alternative way of building matrices from other representations, that is fully type-safe, exists thanks to the linear map semantics of matrices, although we leave this out of the scope of the \doc.
 
 %As is well-known, matrices are a way to represent linear transformations on vectors. So, by defining the semantics of the \hs{Matrix} type as vector-to-vector map, this can be used to define construction and deconstruction functions in a fully type-safe way. Below we briefly show how to implement a total, fully type-safe and polymorphic matrix construction function, using this approach. Vectors and linear maps can be represented by the following types, respectively:
 %
@@ -768,7 +773,7 @@ Note that \hs{fromLists} can fail at run-time if the input list is not complacen
 
 In \S\ref{sec-intro} we showed how matrices form a category where objects are dimensions and morphisms are the matrices themselves.
 
-The proposed inductive structure arranges its type parameters in order to be able to provide a type-class instance for \hs{Category}. It helps the end-user to make better use of and reason about code by using more readable notation and by allowing the compiler to infer which type-class instances to use. Throughout the rest of the paper we will use \hs{id} and \hs{(.)} interchangeably to mean either function or matrix composition/identity.
+The proposed inductive structure arranges its type parameters in order to be able to provide a type-class instance for \hs{Category}. It helps the end-user to make better use of code and reason about it, by using more readable notation and by allowing the compiler to infer which type-class instances to use. Throughout the rest of the paper we will use \hs{id} and \hs{(.)} interchangeably to mean either function or matrix composition/identity.
 
 Given that the \hs{iden}tity matrix needs certain type constrains on the dimension types, only a constrained version of the \hs{Category} type-class can be offered.\footnote{Note that this limitation also happens when trying to implement idiomatic instances of the \hs{Functor} hierarchy in Haskell.
 %nonetheless, equivalent definitions are in reach.
@@ -790,11 +795,11 @@ instance Category (Matrix e) where
     (.) = comp
 \end{minted}
 \vspace{1mm}
-Note that \hs{Countable = KnowNat (Count a)}.
+Note that \hs{Countable = KnownNat (Count a)}.
 
 \section{End-user interface}\label{sec-manipulation}
 
-As one can imagine, working with very large matrices at the type level can be an unpleasant experience. This section presents two new-type wrappers around the canonical data type that aim to improve end-user interfacing, also giving an overview of the available library API and how error messages look like when using it.
+As one can imagine, working with very large matrices at the type level can be an unpleasant experience. This section presents two new-type wrappers around the canonical data type that aim to improve end-user interfacing, also giving an overview of the available library API and how error messages look like when using the generalised dimensions wrapper.
 
 \subsection{Matrix new type wrappers}\label{subsec-newtype-wrappers}
 
@@ -811,7 +816,7 @@ newtype Matrix e (cols :: Nat) (rows :: Nat) =
 \end{minted}
 \vspace{1mm}
 
-Thanks to the type family defined below, it is possible to attain a matrix typed by arbitrary generic data types. This will be the one used throughout the rest of the \doc.
+Thanks to the type family defined below, it is possible to attain a matrix typed by arbitrary generic data types. This will be the new type wrapper used throughout the rest of the \doc.
 
 \vspace{1mm}
 \begin{minted}[xleftmargin=10pt, mathescape=true]{haskell}
@@ -829,7 +834,7 @@ newtype Matrix e (cols :: Type) (rows :: Type) =
 
 \hs{Normalize} needs to preserve the \hs{Either}-based structure to comply with the type signature of \hs{Join} and \hs{Fork}, balancing the tree in all other cases.
 
-This new-type captures the matrix type generalisation proposed by \citet{oliveira2012towards}. In short objects in categories of matrices can be generalised from numeric dimensions ($n, m \in \mathbb{N}_0$) to arbitrary denumerable types $(A,B)$, taking disjoint union $A + B$ for $m + n$, Cartesian product $A \times B$ for $m \times n$, unit type $()$ for number $1$, etc.
+This new-type captures the matrix type generalisation proposed by \citet{oliveira2012towards}. In short, objects in categories of matrices can be generalised from numeric dimensions ($n, m \in \mathbb{N}_0$) to arbitrary denumerable types $(A,B)$, taking disjoint union $A + B$ for $m + n$, Cartesian product $A \times B$ for $m \times n$, unit type $()$ for number $1$, etc.
 
 \subsection{Algebra of Programming API}\label{sec:api}
 
@@ -868,7 +873,7 @@ kr             :: (...) => Matrix e c a -> Matrix e c b -> Matrix e c (a, b)
 \caption{LAoP API}
 \label{lst:api}
 \end{listing*}{}
-\noindent As example of using this API to write matrix operations, the following function provides a \hs{join}/\hs{fork} version of matrix entry-wise addition:
+\noindent As an example of using this API to write matrix operations by composing functions, the following function provides a \hs{join}/\hs{fork} version of matrix entry-wise addition, where \hs{(-|-)} can be seen as the matrix direct sum operation:
 {\small
 \begin{minted}[xleftmargin=10pt, mathescape=true]{haskell}
 addition :: (...) => Matrix e cols rows 
@@ -889,7 +894,7 @@ addition a b =
 \end{eqnarray*}
 \normalsize
 
-Note that all the combinators on dimension types are polymorphic. This is a feature that does not exist or is rather fragile in other programming matrix libraries. However, the expected type constraints and type-level mechanisms (type-level natural and type-families) that make the type polymorphism work can make the type-signatures convoluted. For space economy, these are omitted from the above-mentioned API and throughout the \doc. Nonetheless, this drawback is lessened by offering a set of type aliases in order to reduce the length, improve readability and reasoning of the necessary constraints. For illustrative purposes, we give the full type signature of the \hs{addition} function presented above with and without the syntactic sugar:
+Note that all the combinators on dimension types are polymorphic. This is a feature that does not exist or is rather fragile in other programming matrix libraries. However, the expected type constraints and type-level mechanisms (type-level natural and type-families) that make the type polymorphism work can make the type-signatures convoluted. For space economy, these are omitted from the above-mentioned API and throughout the \doc. Nonetheless, this downside is minimised by providing a set of aliases of type in order to reduce the length and improve the readability and, in some cases, reasoning of the required restrictions. For illustrative purposes, we give the full type signature of the \hs{addition} function presented above with and without the syntactic sugar:
 
 \begin{minted}[xleftmargin=10pt, mathescape=true]{haskell}
 addition :: 
@@ -902,7 +907,7 @@ addition ::
   => Matrix e m c -> Matrix e m c  -> Matrix e m c
 \end{minted}
 
-When doing type-level programming error messages easily become cumbersome and hard to read. By using typed matrices and a strongly typed language most dimension check errors can be caught at compile time however, if the error messages are not clear, this fact does not impose any benefit. Gladly, error messages in our library do not suffer from the type-level machinery involved as we can see from the simple example, where we try to join to matrices with different row types:
+When doing type-level programming error messages easily become cumbersome and hard to read. By using typed matrices and a strongly typed language most dimension check errors can be caught at compile time. However, if the error messages are not clear, this fact does not impose any benefit. Gladly, error messages in our library do not suffer from the type-level machinery involved as we can see from the simple example, where we try to join two matrices with different row types:
 
 \begin{minted}[xleftmargin=10pt, mathescape=true]{haskell}
 -- x :: Matrix Float Bool Bool
@@ -917,8 +922,8 @@ In an equation for 'it': it = join x y
 \end{minted}
 
 The matrix programming library developed in the scope of this paper can be found in the Hackage repository along with its API documentation\footnote{
-%\url{https://hackage.haskell.org/package/laop-0.1.0.5/} 
-\url{https://hackage.haskell.org/package/xxxxx/}. NB: package name removed for the sake of anonymity.}.
+\url{https://hackage.haskell.org/package/laop}}.
+%\url{https://hackage.haskell.org/package/xxxxx/}. NB: package name removed for the sake of anonymity.}.
 
 \section{Equational reasoning}\label{sec-eq-reas}
 
@@ -942,7 +947,7 @@ This section shows how to use equational reasoning and the laws of the linear al
 %	\end{eqnarray*}
 %	Proving
 
-A good example of this is the \hs{select} operator inspired by the \hs{Selective} interface. Selective Functors are a recent abstraction in functional programming. The argument in favour of these Selective Functors advocates them as solving the limitation of Applicatives and Monads in the context of static analysis, allowing over-approximation and under-approximation of effects in a circuit with conditional branches \cite{andrey2019selective}. From a linear algebra perspective, this abstraction allows the study of conditional probability calculations when dealing with left stochastic matrices \citet{Armando2020}. 
+A good example of this is the \hs{select} operator inspired by the \hs{Selective} interface. Selective Functors are a recent abstraction in functional programming. The argument in favour of these Selective Functors advocates them as solving the limitation of Applicatives and Monads in the context of static analysis, allowing over-approximation and under-approximation of effects in a circuit with conditional branches \cite{andrey2019selective}. From a linear algebra perspective, this abstraction allows the study of conditional probability calculations when dealing with left stochastic matrices \cite{Armando2020}. 
 
 \begin{wrapfigure}[6]{r}{11em}
 \vskip -2em \begin{tikzcd}[column sep=small]
@@ -993,7 +998,7 @@ Note that \hs{x} and \hs{z} above can be, on their own, joins. In this case, by 
     \hs{join y id . Join (Fork x c) (Fork z d)}
 \just={ fusion (\ref{fusion-join}) }
     \hs{Join (join y id . Fork x c) (join y id . Fork z d)}
-\just={ divide-and-conquer  (\ref{eq-divide-and-conquer}) twice; identity (\ref{eq-id}) twice }
+\just={ divide-and-conquer (\ref{eq-divide-and-conquer}) twice; identity (\ref{eq-id}) twice }
     \hs{Join (y . x + c) (y . z + d)}
 \end{eqnarray*}\normalsize
 
@@ -1025,9 +1030,9 @@ By exploring linear algebra properties, the compiler can actually be instructed 
    "co-p/cancel1" forall a b. (join a b) . i1 = a;
 #-}
 \end{minted}
-This tells the compiler to skip computations wherever it encounters an instance of the cancellation laws (\ref{cancel-join}/\ref{cancel-fork}).
+This tells the compiler to skip computations wherever it encounters an instance of the cancellation laws (\ref{cancel-join},\ref{cancel-fork}).
 % but, the linear algebra of programming is full of
-Other useful laws such as converse duality (\ref{converse-duality}) or fusion (\ref{fusion-join}/\ref{fusion-fork}) can be used for the same purpose. In possession of such rules, the compiler becomes aware of possible non trivial optimisations and applies a certain degree of equational reasoning to produce more efficient code.
+Other useful laws such as converse duality (\ref{converse-duality}) or fusion (\ref{fusion-join},\ref{fusion-fork}) can be used for the same purpose. In possession of such rules, the compiler becomes aware of possible non trivial optimisations and applies a certain degree of equational reasoning to produce more efficient code.
 
 %Practical results and benchmarks of the transformations presented in this section can be found in section \ref{subsec-bench}.
 
@@ -1189,7 +1194,7 @@ G  	& S  	& R 	&        \\\hline
 \end{array} \label{eq:state}
 \\\nonumber
 \end{eqnarray} \normalsize
-which is calculated following the diagram. Let the following matrices
+which is calculated following the diagram. Consider the following matrices
 \vskip 1ex
 \begin{minted}[xleftmargin=10pt, mathescape=true]{haskell}
 rain :: Matrix Prob () R
@@ -1250,12 +1255,10 @@ tag :: (...) => Matrix e a b -> Matrix e a (b, a)
 tag f = kr f id
 \end{minted}
 \vskip 1ex
-Note the role of the $tag$ operation, which for functions
-amounts to \hs{tag f x = (f x, x)}, that is, the output of $f$ is 
-paired with its input. Combinator \hs{compose} iterates this operation across compositions so as to get an account of all inputs and outputs, as is usual in Bayesian networks.\footnote{This generic combinator is inspired in the \emph{left tagging} relational operator of \cite{Bu01}.} 
+Note the role of the $tag$ operation, which for functions amounts to \hs{tag f x = (f x, x)}, that is, the output of $f$ is paired with its input. Combinator \hs{compose} iterates this operation across compositions so as to get an account of all inputs and outputs, as is usual in Bayesian networks.\footnote{This generic combinator is inspired in the \emph{left tagging} relational operator of \cite{Bu01}.} 
 
-Let \hs{wet :: Matrix Prob () G}, \hs{dry :: Matrix Prob () G}, \hs{dry :: Matrix Prob () R} (and so on) be the \emph{points} of the data types involved in the model. Also remember projections \hs{fstM} and \hs{sndM}, introduced in Listing \ref{lst:api}.
-Then evaluating the overall probability of the grass being wet is given by
+Let \hs{wet :: Matrix Prob () G}, \hs{dry :: Matrix Prob () G}, \hs{no :: Matrix Prob () R} (and so on) be the \emph{points} of the data types involved in the model. Also remember projections \hs{fstM} and \hs{sndM}, introduced in Listing \ref{lst:api}.
+Evaluating the overall probability of the grass being wet is given by
 the scalar\footnote{Recall that scalars are matrices of type \ensuremath{\mathrm{()}\to
 \mathrm{()}}.} 
 \begin{minted}[xleftmargin=10pt, mathescape=true]{haskell}
@@ -1279,7 +1282,7 @@ Let us express this using our LAoP library. Suppose one is given a binary functi
 \begin{eqnarray*}
 \ensuremath{{f}\;({a},{b})\mathrel{=}{f}\;({a},{b'})\Rightarrow {b}\mathrel{=}{b'}}
 \end{eqnarray*}
-holds. That is, $f$ is \emph{injective} on the \emph{second} argument once the \emph{first} is fixed (i.e.\ $f$ is a left-cancelative function). Many functions are of this kind. For instance, multiplication is not injective (cf.\ \ensuremath{\mathrm{0}\mathbin{*}{a}\mathrel{=}{b}\mathbin{*}{0}\mathrel{=}\mathrm{0}} for different \ensuremath{{a},{b}}) but the function \ensuremath{{f}\;({x})\mathrel{=}{a}\mathbin{*}{x}} (fixing the first multiplicand to \ensuremath{a}) is injective.
+holds. That is, $f$ is \emph{injective} on the \emph{second} argument once the \emph{first} is fixed (i.e.\ $f$ is a left-cancelative function). Many functions are of this kind. For instance, multiplication is not injective (cf.\ \ensuremath{\mathrm{0}\mathbin{*}{a}\mathrel{=}{b}\mathbin{*}{0}\mathrel{=}\mathrm{0}} for different \ensuremath{{a},{b}}) but the function \ensuremath{{f}\;({x})\mathrel{=}{a}\mathbin{*}{x}} (fixing the first multiplicand to \ensuremath{a}) is injective (only when $a \neq 0$).
 Take the exclusive-or Boolean operator as another example, represented by the usual matrix:
 %vskip 0.5ex
 \begin{eqnarray*}
@@ -1296,7 +1299,7 @@ xor (True, b)  = not b
 \vskip 1ex
 So \hs{xor} is also left-cancelative.
 
-As it can be easily shown below, pairing an arbitrary left-cancellative function $f :: (A, B) \to B$ with projection $fst :: (A, B) \to A$ yields an injective (reversible) function. So we define the following \emph{generic} matrix combinator, where \hs{fstc} abbreviates \emph{first-complement}:
+As it can be easily shown below, pairing an arbitrary left-cancellative function $f :: (A, B) \to B$ with projection $\mathit{fst} :: (A, B) \to A$ yields an injective (reversible) function. So we define the following \emph{generic} matrix combinator, where \hs{fstc} abbreviates \emph{first-complement}:
 \vskip 1ex
 \begin{minted}[xleftmargin=10pt, mathescape=true]{haskell}
 fstc :: (...) 
@@ -1305,9 +1308,9 @@ fstc :: (...)
 fstc m = kr fstM m
 \end{minted}
 \vskip 1ex
-By applying \hs{fstc} to \hs{xorM = fromF xor} we obtain the reversible matrix
+By applying \hs{fstc} to \hs{xorM = fromF xor}\footnote{\hs{fromF}, shown in Listing \ref{lst:api}, lifts a function to a matrix, giving $0$ or $1$ if the output is generated by a given input.} we obtain the reversible matrix
 \begin{eqnarray*}
-        \longrarrow {Bool \times Bool} {\hs{fstc xorM}} {Bool\times Bool} =
+        \longrarrow {(Bool, Bool)} {\hs{fstc xorM}} {(Bool, Bool)} =
 \begin{bmatrix}
 1       &0      &0      &0\\
 0       &1      &0      &0\\
@@ -1357,27 +1360,28 @@ The following piece of code defines both gates in LAoP syntax:
 toffoli :: (Num e, Ord e) 
         => Matrix e ((Bool, Bool), Bool) 
                     ((Bool, Bool), Bool)
-toffoli = fstc f
+toffoli = fstc xorM
   where
-    f = xor . (uncurry (&&) >< id)
-    f >< g (a,b) = (f a, g b)
+    xorM = fromF xor
+    xor = xor . (uncurry (&&) *** id)
+    f (***) g (a,b) = (f a, g b)
 
 cnot :: (Num e, Ord e) 
      => Matrix e (Bool, Bool) (Bool, Bool)
 cnot = fstc (fromF xor)
 \end{minted}
-\vskip 1ex
 
 Note the constructive approach here: instead of postulating the (universal quantum) gates and then showing how to use them to implement other logic functions, we start from such logic functions in the first place and then wrap them into a reversible ``envelope" using minimal complements.
 
 Also note the numeric parameter \hs{e} free in both gates to be instantiated as needed --- typically in the complex numbers, in quantum programming. This is what happens when generating so-called Bell states,
+
 \begin{minted}[xleftmargin=10pt, mathescape=true]{haskell}
 bell :: Matrix (Complex Double) 
                (Bool, Bool) 
                (Bool, Bool)
 bell = cnot . (had >< id)
 \end{minted}
-where \hs{had} is the Hadamard gate:
+where \hs{had} is the Hadamard gate\footnote{\hs{matrixBuilder}, shown in Listing \ref{lst:api}, builds a matrix out of a function that outputs a given cell value.}:
 \begin{minted}[xleftmargin=10pt, mathescape=true]{haskell}
 had :: Matrix (Complex Double) Bool Bool
 had = (1/sqrt 2) .| matrixBuilder f
@@ -1537,11 +1541,11 @@ had = (1/sqrt 2) .| matrixBuilder f
 %\end{minted}
 \subsection{Evaluation}\label{subsec-bench}
 
-To see whether the inductive approach brings any kind of efficiency benefits, we compared the performance of matrix multiplication algorithms presented in other Haskell libraries and the one proposed in this \doc. 
+To check whether the inductive approach brings any kind of efficiency benefits, we compared the performance of matrix multiplication algorithms presented in other Haskell libraries and the one proposed in this \doc. 
 
 By analysing the current ecosystem at the time of writing, namely by filtering data obtained from the Hackage repository, three libraries providing efficient matrix implementations stand out as the most embraced by the community:
 %Analysing the existing ecosystem, three libraries have been listed as the most embraced by the community providing an efficient matrix implementation. The technique was to filter the results obtained from the Hackage repository by obtaining the following results:
-\emph{hmatrix}, \emph{matrix} and \emph{linear}. We then used the \emph{Criterion} library to benchmark the different algorithms on randomly generated square matrices with dimensions ranging between $10$ and $1600$.
+\emph{hmatrix}, \emph{matrix} and \emph{linear}. The \emph{Criterion} library was used to benchmark the different algorithms on randomly generated square matrices with dimensions ranging between $10$ and $1600$.
 
 Fig.~\ref{tab:testbed} shows the key features of the testbed environment.
 % Please add the following required packages to your document preamble:
@@ -1569,7 +1573,7 @@ OS & Arch Linux \\ \hline
     \label{fig:bench}
 \end{figure}
 
-As can be seen in the plot of Figure \ref{fig:bench}, the \emph{hmatrix} and \emph{matrix} libraries are those that perform better. By observing their internal structures, one realises that they are a suitable representation for BLAS/LAPACK computations \cite{anderson1999lapack}, that is, they have been designed to efficiently exploit caches on modern cache-based architectures. A matrix in the \emph{linear} library is defined as \hs{Vector cols (Vector rows Double)} and does not take into account cache lengths or sizes, so it behaves much worse than the previous ones. Our structure does not take into account any low-level optimisations either, being unable to compete with those that do. Nevertheless, the implementation is \emph{performant for a cache-oblivious approach} and behaves better (almost one order of magnitude better) than other types of simpler definitions.
+As can be seen in the plot of Figure \ref{fig:bench}, the \emph{hmatrix} and \emph{matrix} libraries are those that perform better. By observing their internal structure, one realises that they are a suitable representation for BLAS/LAPACK computations \cite{anderson1999lapack}, that is, they have been designed to efficiently exploit caches on modern cache-based architectures. A matrix in the \emph{linear} library is defined as \hs{Vector cols (Vector rows Double)} and does not take into account cache lengths or sizes, so it behaves much worse than the previous ones. Our structure does not take into account any low-level optimisations either, being unable to compete with those that do. Nevertheless, the implementation is \emph{performant for a cache-oblivious approach} and behaves better (almost one order of magnitude better) than other types of simpler definitions.
 
 %Figure \ref{fig:bench2} plots a different set of benchmarks in which, instead of focusing on matrix multiplication alone, the more concrete and realistic case study provided by the query of \S\ref{subsec-data-analytics} was used as performance test.
 % As we know, linear algebra's queen operation is the multiplication of matrices, and this is supposed to be the operation that has the greatest attention to optimisation. With this in mind and in order to compare the performance of different libraries in more concrete and realistic case studies, the results of the problem presented in \S\ref{subsec-data-analytics} 
@@ -1630,7 +1634,8 @@ msplit :: Matrix a -> BlockMatrix a
 \noindent
 Since matrix dimensions are untyped, the implementation of \hs{msplit} and other matrix-manipulating functions described in the paper requires a great deal of care. By switching to our matrix representation, one can benefit from static correctness guarantees,  as well as exploit the inductive matrix definition whenever it needs to be decomposed into blocks.
 
-As far as typed matrices are concerned, \citet{augustsson2016experience} and \citet{shaikhha2019finally} suggest approaches with similar objectives to ours. The results presented are in the form of a relational algebra library around a C++ library and a Scala matrix DSL that is polymorphic only in the content of the matrix. Relations can be seen as matrices and thus can be represented in our library as well, with all the advantages that are to be expected from using the inductive structure. The DSL approach gives permits to give many interpretations to the semiring/ring operation of the content of the matrices, but they do not manipulate the matrices inductively, nor are their matrices dimensions polymorphic and statically typed!
+As far as typed matrices are concerned, \citet{augustsson2016experience} and \citet{shaikhha2019finally} suggest approaches with similar objectives to ours. The results presented are in the form of a relational algebra library around a C++ library and a Scala matrix DSL that is polymorphic only in the content of the matrix. Relations can be seen as matrices and thus can be represented in our library as well, with all the advantages that are to be expected from using the inductive structure. The DSL approach allows one to provide several definitions of the
+semiring/ring operation relative to the contents of the matrices, but they do not manipulate the matrices inductively, nor are their matrices dimensions polymorphic and statically typed.
 
 \citet{El18} presents a vocabulary of matrices that introduces a minimal set of rules to build ``arbitrary matrices". This vocabulary is consistent with our inductive matrix structure. According to \cite{El18}, the vocabulary needed from generalised linear maps is exactly that of classes \hs{Category}, \hs{Cartesian}, \hs{Cocartesian} and \hs{Scalable}.
 %(which he presents in his \doc)
@@ -1649,7 +1654,7 @@ Our API could evolve in this direction too. %complacent with this vocabulary, in
 %\end{minipage}
 %\end{wrapfigure}
 
-This paper proposes an inductive, block-oriented matrix definition that can be elegantly manipulated thanks to the algebraic laws of typed linear algebra. A solid, polymorphic, type-safe abstract API is provided that, thanks to the underlying theory, shows that one can create robust and efficient programs that rely on complex matrix manipulations. The examples show how well typed linear algebra blends with the functional programming style, providing an overall type-safe framework for the increased need in linear algebra based applications of our days, in areas such as e.g.\ data analysis and machine learning.
+This paper proposes an inductive, block-oriented matrix definition that can be elegantly manipulated thanks to the algebraic laws of typed linear algebra. A solid, polymorphic, type-safe abstract API is provided that, thanks to the underlying theory, shows that one can create robust and efficient programs that rely on complex matrix manipulations. The examples show how well typed linear algebra blends with the functional programming style, providing an overall type-safe framework for the increased need in linear algebra based applications of our days, in areas such as data analysis and machine learning.
 
 The proposed typed inductive matrix definition leads to efficient, cache-oblivious algorithms, such as matrix composition and transposition, allowing one to reason about code and write it in an elegant, type correct way.
 
@@ -1663,11 +1668,11 @@ A possible approach could be based on making the type constructors more polymorp
 A new \hs{Identity} constructor could be added and \hs{One} could represent constant blocks of arbitrary sizes, by changing the unit type for polymorphic ones. Since the identity matrix should no longer possess associated dimension type restrictions, it should be possible to implement an unconstrained \hs{Category} instance offering a more efficient composition operation.
 While we prefer our approach for its simplicity, a more complex inductive type promises advantages in type-safeness and space/time complexity.
 
-Further to researching on a possibly extended encoding, studying how to take advantage of the linear map semantics or parallelization strategies to improve performance is also an interesting future direction.
+Further to researching on a possibly extended encoding, studying how to take advantage of a fully type safe representation via linear map semantics or parallelization strategies to improve performance is also an interesting future direction.
 
 %% Acknowledgments
-\begin{acks}                            %% acks environment is optional
-                                        %% contents suppressed with 'anonymous'
+\begin{acks} %% acks environment is optional
+  %% contents suppressed with 'anonymous'
   %% Commands \grantsponsor{<sponsorID>}{<name>}{<url>} and
   %% \grantnum[<url>]{<sponsorID>}{<number>} should be used to
   %% acknowledge financial support and will be used by metadata
@@ -1681,8 +1686,7 @@ Further to researching on a possibly extended encoding, studying how to take adv
   of the author and do not necessarily reflect the views of the
   National Science Foundation.
   
-  Thank Xia Li-yao for helping optimise \hs{FromNat} type family.
-  Thank Andrey Mokhov for all the insights, opinions concerning the reachability and readability of the paper, and by clarifying the relation between our inductive matrix structure and the algebraic-graphs one, as well as its relation with Dolan's matrix representation.
+  We would like to thank Andrey Mokhov for his guidance and criticism, and specially for our numerous conversations on different possible interpretations of matrices and their relation to his algebraic graphs data type, as well as its relation with Dolan's matrix representation. This work would likely have remained unpublished without his help and refinement. Friends and colleagues Cláudia Correia, João Pereira, Eduardo Barbosa and several anonymous reviewers provided constructive feedback on this paper, helping to substantially improve it. Last but not least, we want to thank the whole Functional Programming community for having answered a number of code-related questions when developing my library.
 \end{acks}
 
 
