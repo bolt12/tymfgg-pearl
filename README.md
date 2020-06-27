@@ -1,4 +1,4 @@
-# Typed Matrices For Great Good (Functional Pearl) - A Haskell library of typed matrices and applications
+# Type Your Matrices For Great Good (Functional Pearl) - A Haskell library of typed matrices and applications
 
 This Functional Pearl was accepted at the Haskell Symposium 2020.
 
