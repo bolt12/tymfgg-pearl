@@ -1229,7 +1229,7 @@ grass :: Matrix Prob (S, R) G
 \end{minted}
 \vskip 1ex
 (where \hs{type Prob = Double})
-encoded in the LAoP library, where we also free the types involved from the strict Boolean model, already visible in (\ref{eq:state}).\footnote{So instead of \hs{G = Bool} we have \hs{G = Dry | Wet} and so on.}
+encoded in the LAoP library, where we also free the types involved from the strict Boolean model, already visible in (\ref{eq:state}).\footnote{So, instead of \hs{G = Bool}, we have the more descriptive \hs{G = Dry | Wet} and so on.}
 %\vskip 1ex
 %\begin{minted}[xleftmargin=10pt, mathescape=true]{haskell}
 %type Prob = Double
@@ -1684,7 +1684,7 @@ This paper proposes an inductive, block-oriented matrix definition that can be e
 
 The proposed typed inductive matrix definition leads to efficient, cache-oblivious algorithms, such as matrix composition and transposition, allowing one to reason about code and write it in an elegant, type correct way.
 
-We conclude that, although our encoding does not turn out to be better in terms of performance compared to more efficient libraries, it does not fall short of expectations and the expressiveness and simplicity that it offers justify its adoption.
+We conclude that, although our encoding does not turn out to be better in terms of performance compared to more efficient libraries, it does not fall short of expectations and the expressiveness and simplicity that it offers justify its adoption. We understand our benchmarks are somewhat thin and plan to refine them in the future.
 
 In future work we plan to fine-tune the implementation in several directions.
 The block-oriented matrix type brings to mind quadtrees \cite{samet1984quadtree} and their savings wrt.\ repetitive cells (pixels). For sparse matrices, which have large blocks of zeros, an improved matrix definition catering for sparsity could be more efficient. Inspired by some of the limitations of the proposed inductive structure, such as the inability to have an unrestricted instance of \hs{Category} and to express large repetitive blocks, alternative formulations are to be explored. 
