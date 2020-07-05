@@ -7,27 +7,47 @@
 %% For single-blind review submission, w/ CCS and ACM Reference
 %\documentclass[acmsmall,review]{acmart}\settopmatter{printfolios=true}
 %% For final camera-ready submission, w/ required CCS and ACM Reference
-\documentclass[sigplan]{acmart}\settopmatter{}
+\documentclass[sigplan,screen]{acmart}\settopmatter{}
 
 
 %% Journal information
 %% Supplied to authors by publisher for camera-ready submission;
 %% use defaults for review submission.
-\acmJournal{PACMPL}
-\acmVolume{1}
-\acmNumber{ICFP} % CONF = POPL or ICFP or OOPSLA
-\acmArticle{1}
+%\acmJournal{PACMPL}
+%\acmVolume{1}
+%\acmNumber{ICFP} % CONF = POPL or ICFP or OOPSLA
+%\acmArticle{1}
+%\acmYear{2020}
+%\acmMonth{5}
+%\acmDOI{} % \acmDOI{10.1145/nnnnnnn.nnnnnnn}
+%\acmConference[Haskell'20]{13th ACM SIGPLAN International Haskell Symposium}{August 27-28, 2020}{New Jersey, United States}
+
+%%% If you see 'ACMUNKNOWN' in the 'setcopyright' statement below,
+%%% please first submit your publishing-rights agreement with ACM (follow link on submission page).
+%%% Then please update our instructions page and copy-and-paste the NEW commands into your article.
+%%% Please contact us in case of questions; allow up to 10 min for the system to propagate the information.
+%%%
+%%% The following is specific to Haskell '20 and the paper
+%%% 'Type Your Matrices for Great Good: A Haskell Library of Typed Matrices and Applications (Functional Pearl)'
+%%% by Armando Santos and José N. Oliveira.
+%%%
+\setcopyright{acmlicensed}
+\acmPrice{}
+\acmDOI{10.1145/3406088.3409019}
 \acmYear{2020}
-\acmMonth{5}
-\acmDOI{} % \acmDOI{10.1145/nnnnnnn.nnnnnnn}
-\acmConference[Haskell'20]{13th ACM SIGPLAN International Haskell Symposium}{August 27-28, 2020}{New Jersey, United States}
+\copyrightyear{2020}
+\acmSubmissionID{icfpws20haskellmain-p16-p}
+\acmISBN{978-1-4503-8050-8/20/08}
+\acmConference[Haskell '20]{Proceedings of the 13th ACM SIGPLAN International Haskell Symposium}{August 27, 2020}{Virtual Event, USA}
+\acmBooktitle{Proceedings of the 13th ACM SIGPLAN International Haskell Symposium (Haskell '20), August 27, 2020, Virtual Event, USA}
+
 \startPage{1}
 
 %% Copyright information
 %% Supplied to authors (based on authors' rights management selection;
 %% see authors.acm.org) by publisher for camera-ready submission;
 %% use 'none' for review submission.
-\setcopyright{none}
+%\setcopyright{none}
 %\setcopyright{acmcopyright}
 %\setcopyright{acmlicensed}
 %\setcopyright{rightsretained}
@@ -62,6 +82,9 @@
 \usepackage{minted}
 \setminted[haskell]{escapeinside=\\@\\@, fontsize=\small}
 \newcommand{\hs}{\mintinline{haskell}}
+\usepackage{xcolor}
+\definecolor{wine}{RGB}{139, 63, 69}
+\def\wine{\color{wine}}
 
 %----- jno added stuff -----
 %\usepackage{fleqn}
@@ -138,12 +161,15 @@
 \end{circuitikz}}
 %---------------------------
 
+%---- Camera-ready stuff -----
+\usepackage{microtype}
+
 \begin{document}
 
 %% Title information
-\title[]{ %Typed Matrices à la LAoP
+\title{ %Typed Matrices à la LAoP
           %Type Polymorphism in Linear Algebra 
-          Type Your Matrices for Great Good\\(Functional Pearl)}         %% [Short Title] is optional;
+          Type Your Matrices for Great Good (Functional Pearl)}         %% [Short Title] is optional;
                                         %% when present, will be used in
                                         %% header instead of Full Title.
 %\titlenote{LAoP - Linear Algebra of Programming}             %% \titlenote is optional;
@@ -172,8 +198,8 @@
 %\orcid{nnnn-nnnn-nnnn-nnnn}             %% \orcid is optional
 \affiliation{
   \position{}
-  \department{Department of Informatics}              %% \department is recommended
-  \institution{University of Minho}            %% \institution is required
+  \department{High Assurance Software Laboratory}              %% \department is recommended
+  \institution{INESC TEC and University of Minho}            %% \institution is required
   \streetaddress{}
   \city{Braga}
   \state{Portugal}
@@ -189,8 +215,8 @@
 %\orcid{nnnn-nnnn-nnnn-nnnn}             %% \orcid is optional
 \affiliation{
   \position{}
-  \department{Department of Informatics}              %% \department is recommended
-  \institution{University of Minho}            %% \institution is required
+  \department{High Assurance Software Laboratory}              %% \department is recommended
+  \institution{INESC TEC and University of Minho}            %% \institution is required
   \streetaddress{}
   \city{Braga}
   \state{Portugal}
@@ -326,7 +352,7 @@ Category theory uses arrows as a generic notation able to cope with very distinc
 A standard way to achieve typed functional programming is to use the category \textbf{Set} of sets to type functions. For instance, in addition to the function definition:
 \begin{align*}
     f x = x + 1
-\end{align*}{}
+\end{align*}
 \noindent an arrow between sets is added in order to constraint the scope of the function application:
 \begin{align*}
     & f :: \mathbb{N} \longrightarrow \mathbb{N} \\
@@ -346,7 +372,7 @@ Both functions and relations have advanced type systems supported by the underly
 \begin{tikzcd}
 r & c \arrow[l, "M"'] & p \arrow[l, "N"'] \arrow[ll, "M \cdot N", bend left]
 \end{tikzcd}
-\end{equation}{}
+\end{equation}
 \noindent It has been shown that other interesting combinators arise from so-called \emph{biproducts} in the \textbf{Mat} category, which capture block-matrix operations in a natural way \cite{MO13c}. 
 
 \subsection{Structure of \textbf{Mat}}\label{sec-struct-mat}
@@ -1381,7 +1407,7 @@ bell :: Matrix (Complex Double)
                (Bool, Bool)
 bell = cnot . (had >< id)
 \end{minted}
-where \hs{had} is the Hadamard gate\footnote{\hs{matrixBuilder}, shown in Listing \ref{lst:api}, builds a matrix out of a function that outputs a given cell value.}:
+where \hs{had} is the Hadamard gate\footnote{\hs{matrixBuilder}, shown in Listing \ref{lst:api}, builds a matrix out of a function that relates each cell content with the row and column types}:
 \begin{minted}[xleftmargin=10pt, mathescape=true]{haskell}
 had :: Matrix (Complex Double) Bool Bool
 had = (1/sqrt 2) .| matrixBuilder f
@@ -1677,16 +1703,22 @@ Further to researching on a possibly extended encoding, studying how to take adv
   %% \grantnum[<url>]{<sponsorID>}{<number>} should be used to
   %% acknowledge financial support and will be used by metadata
   %% extraction tools.
-  This material is based upon work supported by the
-  \grantsponsor{GS100000001}{National Science
-    Foundation}{http://dx.doi.org/10.13039/100000001} under Grant
-  No.~\grantnum{GS100000001}{nnnnnnn} and Grant
-  No.~\grantnum{GS100000001}{mmmmmmm}.  Any opinions, findings, and
-  conclusions or recommendations expressed in this material are those
-  of the author and do not necessarily reflect the views of the
-  National Science Foundation.
-  
-  We would like to thank Andrey Mokhov for his guidance and criticism, and specially for our numerous conversations on different possible interpretations of matrices and their relation to his algebraic graphs data type, as well as its relation with Dolan's matrix representation. This work would likely have remained unpublished without his help and refinement. Friends and colleagues Cláudia Correia, João Pereira, Eduardo Barbosa and several anonymous reviewers provided constructive feedback on this paper, helping to substantially improve it. Last but not least, we want to thank the whole Functional Programming community for having answered a number of code-related questions when developing my library.
+
+The authors wish to thank the anonymous referees for their comments and suggestions. They are also indebted to Andrey Mokhov for his constructive criticisms and, in particular, for many conversations on different possible interpretations of matrices and their relationships with algebraic graphs and Dolan's matrix representation.
+% This work would likely have remained unpublished without his help and refinement.
+Cláudia Correia, João Pereira and Eduardo Barbosa also provided constructive feedback on this paper, helping to substantially improve it. %Last but not least, we want to thank the whole Functional Programming community for having answered a number of code-related questions when developing my library.
+
+While doing this work Armando Santos held a BI Research Grant of the DaVinci Project funded by FEDER (through the Operational Programme for Competitiveness and Internationalisation - COMPETE 2020 Programme) and by National Funds through the
+    \grantsponsor{
+            GS100000001
+        }{
+            FCT (Portuguese Foundation for Science and Technology, I.P.)
+        }{
+            http://dx.doi.org/10.13039/501100001871
+        }
+under Grant No.~\grantnum{GS100000001}{PTDC/CCI-COM/29946/2017}.
+
+Any opinions, findings, and conclusions or recommendations expressed in this material are those of the authors and do not necessarily reflect the views of the funding agencies.
 \end{acks}
 
 
