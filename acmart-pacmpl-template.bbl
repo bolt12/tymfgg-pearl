@@ -1,0 +1,407 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{28}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{}, \showDOI{}, and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showDOI}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showDOI #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showDOI      \undefined \def \showDOI       #1{#1}\fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[\protect\citeauthoryear{Anderson, Bai, Bischof, Blackford, Dongarra,
+  Du~Croz, Greenbaum, Hammarling, McKenney, and Sorensen}{Anderson
+  et~al\mbox{.}}{1999}]%
+        {anderson1999lapack}
+\bibfield{author}{\bibinfo{person}{Edward Anderson}, \bibinfo{person}{Zhaojun
+  Bai}, \bibinfo{person}{Christian Bischof}, \bibinfo{person}{Susan Blackford},
+  \bibinfo{person}{Jack Dongarra}, \bibinfo{person}{Jeremy Du~Croz},
+  \bibinfo{person}{Anne Greenbaum}, \bibinfo{person}{Sven Hammarling},
+  \bibinfo{person}{Alan McKenney}, {and} \bibinfo{person}{Danny Sorensen}.}
+  \bibinfo{year}{1999}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{LAPACK Users' guide}}.
+  Vol.~\bibinfo{volume}{9}.
+\newblock \bibinfo{publisher}{Siam}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Augustsson and {\AA}gren}{Augustsson and
+  {\AA}gren}{2016}]%
+        {augustsson2016experience}
+\bibfield{author}{\bibinfo{person}{Lennart Augustsson} {and}
+  \bibinfo{person}{M{\aa}rten {\AA}gren}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Experience report: types for a relational algebra
+  library}. In \bibinfo{booktitle}{\emph{ACM SIGPLAN Notices}}.
+  \bibinfo{publisher}{{ACM}}, \bibinfo{pages}{127--132}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1145/2976002.2976016}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Awodey}{Awodey}{2010}]%
+        {Awodey:2010:CT:2060081}
+\bibfield{author}{\bibinfo{person}{Steve Awodey}.}
+  \bibinfo{year}{2010}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{Category Theory} (\bibinfo{edition}{2nd}
+  ed.)}.
+\newblock \bibinfo{publisher}{Oxford University Press, Inc.},
+  \bibinfo{address}{New York, NY, USA}.
+\newblock
+\showISBNx{0199237182, 9780199237180}
+
+
+\bibitem[\protect\citeauthoryear{Bove, Dybjer, and Norell}{Bove
+  et~al\mbox{.}}{2009}]%
+        {bove2009brief}
+\bibfield{author}{\bibinfo{person}{Ana Bove}, \bibinfo{person}{Peter Dybjer},
+  {and} \bibinfo{person}{Ulf Norell}.} \bibinfo{year}{2009}\natexlab{}.
+\newblock \showarticletitle{A brief overview of Agda--a functional language
+  with dependent types}. In \bibinfo{booktitle}{\emph{International Conference
+  on Theorem Proving in Higher Order Logics}}. \bibinfo{publisher}{Springer},
+  \bibinfo{pages}{73--78}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Brady}{Brady}{2013}]%
+        {brady2013idris}
+\bibfield{author}{\bibinfo{person}{Edwin Brady}.}
+  \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{Idris, a general-purpose dependently typed
+  programming language: Design and implementation}.
+\newblock \bibinfo{journal}{\emph{Journal of functional programming}}
+  \bibinfo{volume}{23}, \bibinfo{number}{5} (\bibinfo{year}{2013}),
+  \bibinfo{pages}{552--593}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Bussche}{Bussche}{2001}]%
+        {Bu01}
+\bibfield{author}{\bibinfo{person}{Jan Van~den Bussche}.}
+  \bibinfo{year}{2001}\natexlab{}.
+\newblock \showarticletitle{Applications of {Alfred Tarski}'s Ideas in Database
+  Theory}. In \bibinfo{booktitle}{\emph{CSL'01}}.
+  \bibinfo{publisher}{Springer-Verlag}, \bibinfo{address}{London, UK},
+  \bibinfo{pages}{20--37}.
+\newblock
+\showISBNx{3-540-42554-3}
+
+
+\bibitem[\protect\citeauthoryear{Dolan}{Dolan}{2013}]%
+        {dolan2013fun}
+\bibfield{author}{\bibinfo{person}{Stephen Dolan}.}
+  \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{Fun with semirings: a functional pearl on the abuse
+  of linear algebra}. In \bibinfo{booktitle}{\emph{ICFP'13, Boston}}.
+  \bibinfo{publisher}{ACM SIGPLAN Notices}, \bibinfo{pages}{101--110}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Elliott}{Elliott}{2018}]%
+        {El18}
+\bibfield{author}{\bibinfo{person}{Conal Elliott}.}
+  \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{The simple essence of automatic differentiation}.
+\newblock \bibinfo{journal}{\emph{{PACMPL}}} \bibinfo{volume}{2},
+  \bibinfo{number}{{ICFP}} (\bibinfo{year}{2018}),
+  \bibinfo{pages}{70:1--70:29}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1145/3236765}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Frigo, Leiserson, Prokop, and
+  Ramachandran}{Frigo et~al\mbox{.}}{1999}]%
+        {frigo1999cache}
+\bibfield{author}{\bibinfo{person}{Matteo Frigo}, \bibinfo{person}{Charles~E.
+  Leiserson}, \bibinfo{person}{Harald Prokop}, {and} \bibinfo{person}{Sridhar
+  Ramachandran}.} \bibinfo{year}{1999}\natexlab{}.
+\newblock \showarticletitle{Cache-Oblivious Algorithms}. In
+  \bibinfo{booktitle}{\emph{40th Annual Symposium on Foundations of Computer
+  Science, {FOCS} '99, 17-18 October, 1999, New York, NY, {USA}}}.
+  \bibinfo{publisher}{{IEEE} Computer Society}, \bibinfo{pages}{285--298}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1109/SFFCS.1999.814600}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Hall, Hammond, Peyton~Jones, and Wadler}{Hall
+  et~al\mbox{.}}{1996}]%
+        {hall1996type}
+\bibfield{author}{\bibinfo{person}{Cordelia~V. Hall}, \bibinfo{person}{Kevin
+  Hammond}, \bibinfo{person}{Simon~L Peyton~Jones}, {and}
+  \bibinfo{person}{Philip~L Wadler}.} \bibinfo{year}{1996}\natexlab{}.
+\newblock \showarticletitle{Type classes in Haskell}.
+\newblock \bibinfo{journal}{\emph{ACM Transactions on Programming Languages and
+  Systems (TOPLAS)}} \bibinfo{volume}{18}, \bibinfo{number}{2}
+  (\bibinfo{year}{1996}), \bibinfo{pages}{109--138}.
+\newblock
+
+\newpage
+\bibitem[\protect\citeauthoryear{Hinze}{Hinze}{2013}]%
+        {Hi13}
+\bibfield{author}{\bibinfo{person}{Ralf Hinze}.}
+  \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{Adjoint folds and unfolds --- An extended study}.
+\newblock \bibinfo{journal}{\emph{Science of Computer Programming}}
+  \bibinfo{volume}{78}, \bibinfo{number}{11} (\bibinfo{year}{2013}),
+  \bibinfo{pages}{2108--2159}.
+\newblock
+\showISSN{0167-6423}
+
+
+\bibitem[\protect\citeauthoryear{Jones, Tolmach, and Hoare}{Jones
+  et~al\mbox{.}}{2001}]%
+        {jones2001playing}
+\bibfield{author}{\bibinfo{person}{Simon~Peyton Jones}, \bibinfo{person}{Andrew
+  Tolmach}, {and} \bibinfo{person}{Tony Hoare}.}
+  \bibinfo{year}{2001}\natexlab{}.
+\newblock \showarticletitle{Playing by the rules: rewriting as a practical
+  optimisation technique in GHC}. In \bibinfo{booktitle}{\emph{Haskell
+  workshop}}, Vol.~\bibinfo{volume}{1}. \bibinfo{publisher}{ACM},
+  \bibinfo{pages}{203--233}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Kramer}{Kramer}{2007}]%
+        {Kr07}
+\bibfield{author}{\bibinfo{person}{Jeff Kramer}.}
+  \bibinfo{year}{2007}\natexlab{}.
+\newblock \showarticletitle{Is Abstraction the Key to Computing?}
+\newblock \bibinfo{journal}{\emph{Commun. ACM}} \bibinfo{volume}{50},
+  \bibinfo{number}{4} (\bibinfo{date}{April} \bibinfo{year}{2007}),
+  \bibinfo{pages}{37--42}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Macedo and Oliveira}{Macedo and
+  Oliveira}{2013}]%
+        {MO13c}
+\bibfield{author}{\bibinfo{person}{Hugo~D. Macedo} {and}
+  \bibinfo{person}{Jos\'e~N. Oliveira}.} \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{Typing linear algebra: A biproduct-oriented
+  approach}.
+\newblock \bibinfo{journal}{\emph{SCP}} \bibinfo{volume}{78},
+  \bibinfo{number}{11} (\bibinfo{year}{2013}), \bibinfo{pages}{2160--2191}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1016/j.scico.2012.07.012}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{MacLane}{MacLane}{1971}]%
+        {MA71}
+\bibfield{author}{\bibinfo{person}{Saunders MacLane}.}
+  \bibinfo{year}{1971}\natexlab{}.
+\newblock \bibinfo{booktitle}{\emph{Categories for the Working Mathematician}}.
+\newblock \bibinfo{publisher}{Springer-Verlag}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Milewski}{Milewski}{2018}]%
+        {milewski2018category}
+\bibfield{author}{\bibinfo{person}{Bartosz Milewski}.}
+  \bibinfo{year}{2018}\natexlab{}.
+\newblock \bibinfo{title}{Category theory for programmers}.
+\newblock
+\newblock
+\newblock
+\shownote{Textbook available on-line: \url{http://tiny.cc/5letkz}.}
+
+
+\bibitem[\protect\citeauthoryear{Mokhov}{Mokhov}{2017}]%
+        {10.1145/3122955.3122956}
+\bibfield{author}{\bibinfo{person}{Andrey Mokhov}.}
+  \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Algebraic Graphs with Class (Functional Pearl)}. In
+  \bibinfo{booktitle}{\emph{Haskell 2017}} (Oxford, UK).
+  \bibinfo{publisher}{ACM}, \bibinfo{address}{New York, NY, USA},
+  \bibinfo{pages}{2–13}.
+\newblock
+\showISBNx{9781450351829}
+\urldef\tempurl%
+\url{https://doi.org/10.1145/3122955.3122956}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Mokhov, Lukyanov, Marlow, and Dimino}{Mokhov
+  et~al\mbox{.}}{2019}]%
+        {andrey2019selective}
+\bibfield{author}{\bibinfo{person}{Andrey Mokhov}, \bibinfo{person}{Georgy
+  Lukyanov}, \bibinfo{person}{Simon Marlow}, {and} \bibinfo{person}{Jeremie
+  Dimino}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Selective Applicative Functors}.
+\newblock \bibinfo{journal}{\emph{Proc. ACM Program. Lang.}}
+  \bibinfo{volume}{3}, \bibinfo{number}{ICFP}, Article \bibinfo{articleno}{90}
+  (\bibinfo{date}{July} \bibinfo{year}{2019}), \bibinfo{numpages}{29}~pages.
+\newblock
+\showISSN{2475-1421}
+\urldef\tempurl%
+\url{https://doi.org/10.1145/3341694}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Oliveira}{Oliveira}{2012}]%
+        {oliveira2012towards}
+\bibfield{author}{\bibinfo{person}{Jos{\'e}~N. Oliveira}.}
+  \bibinfo{year}{2012}\natexlab{}.
+\newblock \showarticletitle{Towards a linear algebra of programming}.
+\newblock \bibinfo{journal}{\emph{Formal Aspects of Computing}}
+  \bibinfo{volume}{24}, \bibinfo{number}{4-6} (\bibinfo{year}{2012}),
+  \bibinfo{pages}{433--458}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Oliveira}{Oliveira}{2018}]%
+        {Ol18}
+\bibfield{author}{\bibinfo{person}{Jos\'e~N. Oliveira}.}
+  \bibinfo{year}{2018}\natexlab{}.
+\newblock \bibinfo{title}{Compiling quantamorphisms for the {IBM
+  Q}-Experience}.
+\newblock
+\newblock
+\newblock
+\shownote{Talk at the IFIP WG 2.1 \#77 Meeting, Brandenburg (Germany). Joint
+  work with A. Neri and R.S. Barbosa.}
+
+
+\bibitem[\protect\citeauthoryear{Peyton~Jones, Vytiniotis, Weirich, and
+  Washburn}{Peyton~Jones et~al\mbox{.}}{2006}]%
+        {peyton2006simple}
+\bibfield{author}{\bibinfo{person}{Simon Peyton~Jones},
+  \bibinfo{person}{Dimitrios Vytiniotis}, \bibinfo{person}{Stephanie Weirich},
+  {and} \bibinfo{person}{Geoffrey Washburn}.} \bibinfo{year}{2006}\natexlab{}.
+\newblock \showarticletitle{Simple unification-based type inference for GADTs}.
+\newblock \bibinfo{journal}{\emph{ACM SIGPLAN Notices}} \bibinfo{volume}{41},
+  \bibinfo{number}{9} (\bibinfo{year}{2006}), \bibinfo{pages}{50--61}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Samet}{Samet}{1984}]%
+        {samet1984quadtree}
+\bibfield{author}{\bibinfo{person}{Hanan Samet}.}
+  \bibinfo{year}{1984}\natexlab{}.
+\newblock \showarticletitle{The quadtree and related hierarchical data
+  structures}.
+\newblock \bibinfo{journal}{\emph{ACM Computing Surveys (CSUR)}}
+  \bibinfo{volume}{16}, \bibinfo{number}{2} (\bibinfo{year}{1984}),
+  \bibinfo{pages}{187--260}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Santos}{Santos}{2020}]%
+        {Armando2020}
+\bibfield{author}{\bibinfo{person}{Armando Santos}.}
+  \bibinfo{year}{2020}\natexlab{}.
+\newblock \bibinfo{title}{Selective Functors \& Probabilistic Programming}.
+\newblock
+  \bibinfo{howpublished}{\url{https://github.com/bolt12/master-thesis}}.
+\newblock
+\newblock
+\shownote{(In progress).}
+
+
+\bibitem[\protect\citeauthoryear{Sato, Young, and Patterson}{Sato
+  et~al\mbox{.}}{2017}]%
+        {sato2017depth}
+\bibfield{author}{\bibinfo{person}{Kaz Sato}, \bibinfo{person}{Cliff Young},
+  {and} \bibinfo{person}{David Patterson}.} \bibinfo{year}{2017}\natexlab{}.
+\newblock \bibinfo{title}{An in-depth look at Google's first Tensor Processing
+  Unit (TPU)}.
+\newblock
+\newblock
+\newblock
+\shownote{In
+  \href{https://cloud.google.com/blog/products/gcp/an-in-depth-look-at-googles-first-tensor-processing-unit-tpu}{Google
+  Cloud Big Data and Machine Learning Blog}. Access date: \today.}
+
+
+\bibitem[\protect\citeauthoryear{Shaikhha and Parreaux}{Shaikhha and
+  Parreaux}{2019}]%
+        {shaikhha2019finally}
+\bibfield{author}{\bibinfo{person}{Amir Shaikhha} {and} \bibinfo{person}{Lionel
+  Parreaux}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Finally, a Polymorphic Linear Algebra Language
+  (Pearl)}. In \bibinfo{booktitle}{\emph{{ECOOP} 2019, London, UK}}
+  \emph{(\bibinfo{series}{LIPIcs}, Vol.~\bibinfo{volume}{134})},
+  \bibfield{editor}{\bibinfo{person}{Alastair~F. Donaldson}} (Ed.).
+  \bibinfo{publisher}{Schloss Dagstuhl - Leibniz-Zentrum f{\"{u}}r Informatik},
+  \bibinfo{pages}{25:1--25:29}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.4230/LIPIcs.ECOOP.2019.25}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{Stolarek, Peyton~Jones, and
+  Eisenberg}{Stolarek et~al\mbox{.}}{2015}]%
+        {stolarek2015injective}
+\bibfield{author}{\bibinfo{person}{Jan Stolarek}, \bibinfo{person}{Simon
+  Peyton~Jones}, {and} \bibinfo{person}{Richard~A Eisenberg}.}
+  \bibinfo{year}{2015}\natexlab{}.
+\newblock \showarticletitle{Injective type families for Haskell}.
+\newblock \bibinfo{journal}{\emph{ACM SIGPLAN Notices}} \bibinfo{volume}{50},
+  \bibinfo{number}{12} (\bibinfo{year}{2015}), \bibinfo{pages}{118--128}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Volkov and Demmel}{Volkov and Demmel}{2008}]%
+        {volkov2008benchmarking}
+\bibfield{author}{\bibinfo{person}{Vasily Volkov} {and} \bibinfo{person}{James
+  Demmel}.} \bibinfo{year}{2008}\natexlab{}.
+\newblock \showarticletitle{Benchmarking GPUs to tune dense linear algebra}. In
+  \bibinfo{booktitle}{\emph{Proc.\ {SC} 2008 {ACM/IEEE} Conf.\ on High
+  Performance Computing}}. \bibinfo{publisher}{{IEEE/ACM}},
+  \bibinfo{pages}{31}.
+\newblock
+\urldef\tempurl%
+\url{https://doi.org/10.1109/SC.2008.5214359}
+\showDOI{\tempurl}
+
+
+\bibitem[\protect\citeauthoryear{{Wikipedia}}{{Wikipedia}}{2020}]%
+        {wiki:BayesianNetwork}
+\bibfield{author}{\bibinfo{person}{{Wikipedia}}.}
+  \bibinfo{year}{2020}\natexlab{}.
+\newblock \bibinfo{title}{Bayesian network}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://en.wikipedia.org/wiki/Bayesian_network}
+\showURL{%
+\tempurl}
+\newblock
+\shownote{(Accessed: 2020-02-16).}
+
+
+\end{thebibliography}
