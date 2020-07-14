@@ -7,7 +7,7 @@
 %% For single-blind review submission, w/ CCS and ACM Reference
 %\documentclass[acmsmall,review]{acmart}\settopmatter{printfolios=true}
 %% For final camera-ready submission, w/ required CCS and ACM Reference
-\documentclass[sigplan,screen]{acmart}\settopmatter{}
+\documentclass[sigplan,screen]{acmart}
 
 
 %% Journal information
@@ -31,15 +31,24 @@
 %%% 'Type Your Matrices for Great Good: A Haskell Library of Typed Matrices and Applications (Functional Pearl)'
 %%% by Armando Santos and José N. Oliveira.
 %%%
+%\setcopyright{acmcopyright}
+%\acmPrice{15.00}
+%\acmDOI{10.1145/3406088.3409019}
+%\acmYear{2020}
+%\copyrightyear{2020}
+%\acmSubmissionID{icfpws20haskellmain-p16-p}
+%\acmISBN{978-1-4503-8050-8/20/08}
+%\acmConference[Haskell '20]{Proceedings of the 13th ACM SIGPLAN International Haskell Symposium}{August 27, 2020}{Virtual Event, USA}
+%\acmBooktitle{Proceedings of the 13th ACM SIGPLAN International Haskell Symposium (Haskell '20), August 27, 2020, Virtual Event, USA}
+
+\copyrightyear{2020}
+\acmYear{2020}
 \setcopyright{acmcopyright}
+\acmConference[Haskell '20]{13th ACM SIGPLAN International Haskell Symposium}{August 27, 2020}{Virtual Event, USA}
+\acmBooktitle{13th ACM SIGPLAN International Haskell Symposium (Haskell '20), August 27, 2020, Virtual Event, USA}
 \acmPrice{15.00}
 \acmDOI{10.1145/3406088.3409019}
-\acmYear{2020}
-\copyrightyear{2020}
-\acmSubmissionID{icfpws20haskellmain-p16-p}
 \acmISBN{978-1-4503-8050-8/20/08}
-\acmConference[Haskell '20]{Proceedings of the 13th ACM SIGPLAN International Haskell Symposium}{August 27, 2020}{Virtual Event, USA}
-\acmBooktitle{Proceedings of the 13th ACM SIGPLAN International Haskell Symposium (Haskell '20), August 27, 2020, Virtual Event, USA}
 
 \startPage{1}
 
@@ -73,7 +82,6 @@
                         %% http://ctan.org/pkg/subcaption
                         
 \usepackage{caption}
-\newenvironment{code}{\captionsetup{type=listing}}{}
 
 \usepackage{multicol}
 
@@ -82,13 +90,8 @@
 \usepackage{minted}
 \setminted[haskell]{escapeinside=\\@\\@, fontsize=\small}
 \newcommand{\hs}{\mintinline{haskell}}
-\usepackage{xcolor}
-\definecolor{wine}{RGB}{139, 63, 69}
-\def\wine{\color{wine}}
 
 %----- jno added stuff -----
-%\usepackage{fleqn}
-%\setlength\mathindent{3em}
 \usepackage{multirow}
 \newenvironment{lcbr}{\left\{\begin{array}{l}}{\end{array}\right.}
 \usepackage[all]{xy}
@@ -336,7 +339,7 @@ The main goal of this paper is to demonstrate that by taking advantage of a stro
     \item Some practical examples that use the proposed matrix library in several application domains (e.g.\ probabilistic programming, quantum programming) are given and show how functional programming blends naturally with linear algebra. 
 \end{itemize}{}
 
-\subsection{Layout of the \doc}
+\subsection{Layout of the Paper}
 
 %The motivation for the work developed is given in \S\ref{sec-motivation}.
 The rest of the paper is structured as follows. A brief overview of the \textbf{Mat} category is given in \S\ref{sec-struct-mat} showing the rich algebra of matrices that emerges from the categorical notion of \emph{biproduct}.
@@ -378,7 +381,7 @@ r & c \arrow[l, "M"'] & p \arrow[l, "N"'] \arrow[ll, "M \cdot N", bend left]
 \subsection{Structure of \textbf{Mat}}\label{sec-struct-mat}
 The structure of the \textbf{Mat} category is described below. \newline Figure \ref{fig:cheat_sheet} provides a reference guide containing the main algebraic laws.
 
-\subsubsection{Basic structure}
+\subsubsection{Basic Structure}
 
 For every dimension $d$ there is a matrix $d \longrightarrow d$ which is the unit of composition, i.e.\ the (square) \emph{identity} matrix of size $d$:
 \begin{equation}\label{eq-id}
@@ -426,7 +429,7 @@ In the same way that $M + N$ promotes the addition of matrix cells to the additi
 % or simply as $MN$
 (for $M$ and $N$ of the same type), also known as the Hadamard product, which is commutative, associative and distributive over addition (i.e.\ bilinear).
 
-\subsubsection{Products and co-products}\label{laop-laws}
+\subsubsection{Products and Co-products}\label{laop-laws}
 
 From law (\ref{eq:091206c}) on-wards, Fig.~\ref{fig:cheat_sheet} presents the basic algebra of matrix-block combinators that will be used throughout the rest of the \doc. The concept of a \emph{biproduct} is central to their characterisation,
 %  of \textbf{Mat}, which combines
@@ -547,10 +550,10 @@ To ensure correct typing, typed linear algebra practitioners are encouraged to d
         & \left[ \frac{A}{B} \right] = \left[ \frac{C}{D} \right] \iff A = C \land B = D 
     \end{align}
 \end{multicols}
-\hrulefill
 \end{minipage}
     \caption{Summary of the laws of block-linear-algebra enabled by biproducts. (Valid only if over the same biproduct.)}
     \label{fig:cheat_sheet}
+\hrulefill
 \end{figure*}
 
 The laws of Figure \ref{fig:cheat_sheet} enable one to calculate standard linear algebra rules and algorithms. 
@@ -584,7 +587,7 @@ block-multiplication.
 \end{wrapfigure}
 Looking at matrices as lists of lists, or arrays, or graphs is a rather poor perspective on linear algebra. Somewhat more useful is to focus on how matrices are built or partitioned and on which formal rules are there for handling their internal structure, as seen above. Explicit, painful, low-level matrix manipulation is a source of dubious code, which is error-prone and difficult to analyse. Looking at it from a higher, abstract point of view that relies on a sound mathematical theory provides both simplicity and reliability benefits.
 
-\section{Matrix data type}\label{sec-matrix-type}
+\section{Matrix Data Type}\label{sec-matrix-type}
 
 Putting theory into practice, a safe and minimalist inductive matrix data type is encoded in Haskell. This data type takes into account certain conditions needed in order to accommodate the advantages that a good type system and the quantitative extension of the algebra of programming have to offer: be polymorphic, have statically typed dimensions, be type-inference friendly, be correct-by-construction and amenable to elegant and calculational manipulation.
 
@@ -619,7 +622,7 @@ These simple four constructors provide a type safe inductive definition where it
 
 The trick is to define a recursive data type in which dimensions are typed by algebraic data types and use a GADT in order to control the output type dimensions and maintain the \hs{Join} and \hs{Fork} dimension invariants across the data structure.
 
-\subsection{Constructing matrices}
+\subsection{Constructing Matrices}
 
 This solution was built on the notion that algebraic data types are isomorphic to their cardinality, e.g. |\hs{Void}| $ \cong 0$, |\hs{()}| $\cong 1$, |\hs{Either a b}| $\cong |a| + |b|$ and so on. Furthermore, this GADT guarantees that a matrix will always have valid dimensions, i.e. is type-correct by construction. For instance, the $2 \times 2$ identity matrix
 %
@@ -679,7 +682,7 @@ iden2x2 = Fork (Join (One 1) (One 0))
 
 Notice that type families can be seen as type-level functions that are called at compile-time. So a type-level demanding program will take longer to compile, specially if it declares several large matrices. Thankfully, \hs{FromNat} takes advantage of the possibility of reducing the number of computations needed to calculate the normalised dimension type that provides a significant speedup.
 
-\section{Matrix manipulation and transformation} \label{sec:200303a}
+\section{Matrix Manipulation and Transformation} \label{sec:200303a}
 
 The proposed inductive matrix data type enables the use of pattern matching and the laws of the linear algebra of programming (\S\ref{laop-laws}) to write total, efficient and statically typed manipulation and transformation functions. In view of this, matrix composition (\emph{aka} matrix-matrix multiplication) can be defined elegantly and in a more calculational way, in contrast with the partial, (ugly) low-level nested for-loop implementation, which can be found in most imperative languages:
 \begin{minted}[xleftmargin=10pt]{haskell}
@@ -719,7 +722,7 @@ instance Eq e => Eq (Matrix e cols rows) where
 
 It is worth noting that one major downside of this encoding is that \hs{Either (Either () ()) ()} is different from \hs{Either () (Either () ())}, for example, even though both represent $3$. This implies that two matrices with the same dimension can have different types, and thus, for example, they can not be tested for equality. One way to address this downside is shown in \S\ref{subsec-newtype-wrappers}, by introducing a new-type matrix wrapper with generic arbitrary dimensions. Another approach is to manually write an identity matrix that exposes this isomorphism and use it to obtain a matrix of the same dimensions.  
 
-\section{Matrix construction}\label{l-m-s}
+\section{Matrix Construction}\label{l-m-s}
 
 It is not possible to construct typed matrices depending on the type of the dimensions desired, because GHC is not able to infer the correct GADT types. One way to achieve this is by using type-classes. Type-classes can be seen as functions from types to values and they are the solution for writing methods that allow building matrices from other representations (e.g.\ list of lists of elements) in the same inductive way, as is the case of class \hs{FromLists}.
 \begin{minted}[xleftmargin=10pt, mathescape=true]{haskell}
@@ -795,7 +798,7 @@ Note that \hs{fromLists} can fail at run-time if the input list is not complacen
 %algorithms defined directly over the inductive structure tend to be more efficient, see \S \ref{subsec-bench}.
 %%an very efficient way however, linear maps can be more straightforward to work with than the inductive data type in some cases, but are less efficient.
 
-\section{Category instance}\label{sec:cat}
+\section{Category Instance}\label{sec:cat}
 
 In \S\ref{sec-intro} we showed how matrices form a category where objects are dimensions and morphisms are the matrices themselves.
 
@@ -823,11 +826,11 @@ instance Category (Matrix e) where
 \vspace{1mm}
 Note that \hs{Countable = KnownNat (Count a)}.
 
-\section{End-user interface}\label{sec-manipulation}
+\section{End-user Interface}\label{sec-manipulation}
 
 As one can imagine, working with very large matrices at the type level can be an unpleasant experience. This section presents two new-type wrappers around the canonical data type that aim to improve end-user interfacing, also giving an overview of the available library API and how error messages look like when using the generalised dimensions wrapper.
 
-\subsection{Matrix new type wrappers}\label{subsec-newtype-wrappers}
+\subsection{Matrix New Type Wrappers}\label{subsec-newtype-wrappers}
 
 It is possible to abstract the use of the \hs{FromNat} type family, obtaining a new-type matrix wrapper which dimensions are type level naturals (provided by the TypeLits library). 
 
@@ -951,7 +954,7 @@ The matrix programming library developed in the scope of this paper can be found
 \url{https://hackage.haskell.org/package/laop}}.
 %\url{https://hackage.haskell.org/package/xxxxx/}. NB: package name removed for the sake of anonymity.}.
 
-\section{Equational reasoning}\label{sec-eq-reas}
+\section{Equational Reasoning}\label{sec-eq-reas}
 
 This section shows how to use equational reasoning and the laws of the linear algebra of programming to prove properties of functions on matrices and/or to obtain more efficient programs.
 % For example, to prove that:
@@ -1062,7 +1065,7 @@ Other useful laws such as converse duality (\ref{converse-duality}) or fusion (\
 
 %Practical results and benchmarks of the transformations presented in this section can be found in section \ref{subsec-bench}.
 
-\section{Applications and benchmarks}\label{sec-appl}
+\section{Applications and Benchmarks}\label{sec-appl}
 This section starts by giving two simple examples of application of the LAoP library.
 
 %\subsection{Linear Algebra Semantics of Spreadsheets}\label{subsec-laop}
@@ -1152,7 +1155,7 @@ This section starts by giving two simple examples of application of the LAoP lib
 %                    (Either One Student)
 %\end{minted}
 
-\subsection{Probabilistic programming} \label{subsec-prob-laop}
+\subsection{Probabilistic Programming} \label{subsec-prob-laop}
 Probabilistic programming arises naturally from functional programming once we replace ``sharp" functions by probabilistic ones, represented by stochastic matrices, also known as Markov chains \cite{oliveira2012towards}. Let us show this taking an example from the \citet{wiki:BayesianNetwork}. Suppose we define the following predicates modelling the behaviour of a sprinkler, where \hs{S} (sprinkler on/off), \hs{R} (raining or not) and \hs{G} (grass wet or not) are Booleans:
 \begin{eqnarray*}
 \begin{array}{rcl}
@@ -1299,7 +1302,7 @@ grass_wet = tr wet . fstM . state -- = 44.84%
 %\end{eqnarray*}
 %where Boolean vectors $a,b : 1 \to G \times (S \times R)$ describe \emph{event} sets over the state and \ensuremath{{a} \times {b}} denotes their Hadamard product. The code of this example can be found in appendix \ref{appendix-sprinkler}.
 
-\subsection{Reversible (quantum) programming}
+\subsection{Reversible (Quantum) Programming}
 The main purpose of this brief example is to show the role of parametricity in reversible computing, with application to quantum programming. It is well-known that quantum circuits are denoted by unitary, complex matrices. Classic quantum gates are the unitary \ensuremath{\mathrm{0},\mathrm{1}}-matrices, that is, matrices representing bijections.
 
 The standard way of building quantum circuits proceeds by composing so-called \emph{universal} gates, typically the Toffoli gate, the C-NOT gate, the Hadamard gate and so on. Such universal gates are given as primitive, but in fact they can be derived from more elementary units via a generic process called \emph{minimal complementation} \cite{Ol18}.
@@ -1722,7 +1725,8 @@ Any opinions, findings, and conclusions or recommendations expressed in this mat
 \end{acks}
 
 %% Bibliography
-\bibliography{bibfile}
+%\bibliography{bibfile}
+\input{acmart-pacmpl-template.bbl}
 
 %%% Appendix
 %\appendix\small
